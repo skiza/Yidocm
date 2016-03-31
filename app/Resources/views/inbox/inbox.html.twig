@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+		<div align="center "id="usuario">
+		{% for alias in alias %}
+			<p id="alias">Welcome {{ alias.alias }}</p>
+			 {% endfor %}
+			<a href="{{ path('cerrar') }}" id="enlace">Log out</a>
+		</div>
+    </body>
+</html>

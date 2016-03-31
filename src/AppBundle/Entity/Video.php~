@@ -1,0 +1,109 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Video
+ *
+ * @ORM\Table(name="Video", indexes={@ORM\Index(name="fk_Video_User1_idx", columns={"User_alias"}), @ORM\Index(name="fk_Video_VideoStatus1_idx", columns={"VideoStatus_videoStatus"})})
+ * @ORM\Entity
+ */
+class Video
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=45, nullable=false)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=45, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="filePath", type="string", length=100, nullable=true)
+     */
+    private $filepath;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="uploadDate", type="date", nullable=false)
+     */
+    private $uploaddate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="size", type="decimal", precision=4, scale=0, nullable=true)
+     */
+    private $size;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="format", type="string", length=60, nullable=true)
+     */
+    private $format;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idVideo", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idvideo;
+
+    /**
+     * @var \AppBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="User_alias", referencedColumnName="alias")
+     * })
+     */
+    private $userAlias;
+
+    /**
+     * @var \AppBundle\Entity\Videostatus
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Videostatus")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="VideoStatus_videoStatus", referencedColumnName="videoStatus")
+     * })
+     */
+    private $videostatusVideostatus;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Category", inversedBy="videovideo")
+     * @ORM\JoinTable(name="video_has_category",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="Video_idVideo", referencedColumnName="idVideo")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="Category_idCategory", referencedColumnName="idCategory")
+     *   }
+     * )
+     */
+    private $categorycategory;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->categorycategory = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

@@ -1,0 +1,83 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Comment
+ *
+ * @ORM\Table(name="Comment", indexes={@ORM\Index(name="fk_Comment_Video1_idx", columns={"Video_idVideo"}), @ORM\Index(name="fk_Comment_User1_idx", columns={"User_alias"}), @ORM\Index(name="fk_Comment_CommentStatus1_idx", columns={"CommentStatus_commentStatus"})})
+ * @ORM\Entity
+ */
+class Comment
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=50, nullable=true)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="body", type="string", length=100, nullable=true)
+     */
+    private $body;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="date", nullable=true)
+     */
+    private $date;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instant", type="decimal", precision=4, scale=0, nullable=true)
+     */
+    private $instant;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idComment", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idcomment;
+
+    /**
+     * @var \AppBundle\Entity\Video
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Video")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Video_idVideo", referencedColumnName="idVideo")
+     * })
+     */
+    private $videovideo;
+
+    /**
+     * @var \AppBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="User_alias", referencedColumnName="alias")
+     * })
+     */
+    private $userAlias;
+
+    /**
+     * @var \AppBundle\Entity\Commentstatus
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Commentstatus")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="CommentStatus_commentStatus", referencedColumnName="commentStatus")
+     * })
+     */
+    private $commentstatusCommentstatus;
+
+
+}

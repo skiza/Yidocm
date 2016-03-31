@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Comment" table="Comment">
+    <indexes>
+      <index name="fk_Comment_Video1_idx" columns="Video_idVideo"/>
+      <index name="fk_Comment_User1_idx" columns="User_alias"/>
+      <index name="fk_Comment_CommentStatus1_idx" columns="CommentStatus_commentStatus"/>
+    </indexes>
+    <id name="idcomment" type="integer" column="idComment">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="title" type="string" column="title" length="50" nullable="true"/>
+    <field name="body" type="string" column="body" length="100" nullable="true"/>
+    <field name="date" type="date" column="date" nullable="true"/>
+    <field name="instant" type="decimal" column="instant" precision="4" scale="0" nullable="true"/>
+    <many-to-one field="videovideo" target-entity="Video">
+      <join-columns>
+        <join-column name="Video_idVideo" referenced-column-name="idVideo"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="userAlias" target-entity="User">
+      <join-columns>
+        <join-column name="User_alias" referenced-column-name="alias"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="commentstatusCommentstatus" target-entity="Commentstatus">
+      <join-columns>
+        <join-column name="CommentStatus_commentStatus" referenced-column-name="commentStatus"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

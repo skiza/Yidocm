@@ -1,0 +1,97 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * User
+ *
+ * @ORM\Table(name="User", indexes={@ORM\Index(name="fk_User_UserType_idx", columns={"UserType_userType"}), @ORM\Index(name="fk_User_UserStatus1_idx", columns={"UserStatus_userStatus"}), @ORM\Index(name="fk_User_Country1_idx", columns={"Country_initial"})})
+ * @ORM\Entity
+ */
+class User
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=30, nullable=false)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=30, nullable=false)
+     */
+    private $password;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="creationDate", type="datetime", nullable=false)
+     */
+    private $creationdate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="gender", type="string", length=1, nullable=false)
+     */
+    private $gender;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateOfBirth", type="date", nullable=false)
+     */
+    private $dateofbirth;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=60, nullable=true)
+     */
+    private $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alias", type="string", length=30)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $alias;
+
+    /**
+     * @var \AppBundle\Entity\Usertype
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Usertype")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="UserType_userType", referencedColumnName="userType")
+     * })
+     */
+    private $usertypeUsertype;
+
+    /**
+     * @var \AppBundle\Entity\Userstatus
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Userstatus")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="UserStatus_userStatus", referencedColumnName="userStatus")
+     * })
+     */
+    private $userstatusUserstatus;
+
+    /**
+     * @var \AppBundle\Entity\Country
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Country")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Country_initial", referencedColumnName="initial")
+     * })
+     */
+    private $countryInitial;
+
+
+}

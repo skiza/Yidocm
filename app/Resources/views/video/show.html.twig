@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ video.title }}</h1>
+	<div>
+		<video width="320" height="240" controls>
+			<source src="/uploads/{{video.getUserAlias().getAlias()}}/{{video.filepath}}" type="{{video.format}}">
+			Your browser does not support the video tag.
+		</video>
+	</div>
+	<div>
+		<h3>DESCRIPTION</h3>
+		<p>{{ video.description }}</p>
+	</div>
+	<a href="{{ path('video_download', { 'name': video.filepath }) }}">Download</a>
+{% endblock %}

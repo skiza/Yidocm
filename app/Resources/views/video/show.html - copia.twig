@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Video</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Title</th>
+                <td>{{ video.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ video.description }}</td>
+            </tr>
+            <tr>
+                <th>Filepath</th>
+                <td>{{ video.filepath }}</td>
+            </tr>
+            <tr>
+                <th>Uploaddate</th>
+                <td>{% if video.uploaddate %}{{ video.uploaddate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Size</th>
+                <td>{{ video.size }}</td>
+            </tr>
+            <tr>
+                <th>Format</th>
+                <td>{{ video.format }}</td>
+            </tr>
+            <tr>
+                <th>Idvideo</th>
+                <td>{{ video.idvideo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('video_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('video_edit', { 'id': video.idvideo }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
